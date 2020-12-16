@@ -5,13 +5,13 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 13 June 2021                                          C.A. Wood
+Expires: 19 June 2021                                          C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                        10 December 2020
+                                                        16 December 2020
 
 
               Discovery of Equivalent Encrypted Resolvers
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2021.
+   This Internet-Draft will expire on 19 June 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 1]
+Pauly, et al.             Expires 19 June 2021                  [Page 1]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -77,19 +77,17 @@ Table of Contents
      4.1.  Authenticated Discovery . . . . . . . . . . . . . . . . .   5
      4.2.  Opportunistic Discovery . . . . . . . . . . . . . . . . .   5
    5.  Discovery Using Resolver Names  . . . . . . . . . . . . . . .   6
-   6.  Optimizations . . . . . . . . . . . . . . . . . . . . . . . .   7
-   7.  Deployment Considerations . . . . . . . . . . . . . . . . . .   7
-     7.1.  Caching Forwarders  . . . . . . . . . . . . . . . . . . .   7
-     7.2.  Certificate Management  . . . . . . . . . . . . . . . . .   8
-     7.3.  Legacy Partial Forwarders . . . . . . . . . . . . . . . .   8
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
-     9.1.  Special Use Domain Name "resolver.arpa" . . . . . . . . .   9
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .   9
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  10
-   Appendix A.  Rationale for using SVCB records . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+   6.  Deployment Considerations . . . . . . . . . . . . . . . . . .   6
+     6.1.  Caching Forwarders  . . . . . . . . . . . . . . . . . . .   7
+     6.2.  Certificate Management  . . . . . . . . . . . . . . . . .   7
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
+     8.1.  Special Use Domain Name "resolver.arpa" . . . . . . . . .   8
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .   9
+   Appendix A.  Rationale for using SVCB records . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
 
 1.  Introduction
 
@@ -109,7 +107,9 @@ Table of Contents
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 2]
+
+
+Pauly, et al.             Expires 19 June 2021                  [Page 2]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -165,7 +165,7 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 3]
+Pauly, et al.             Expires 19 June 2021                  [Page 3]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -221,39 +221,41 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 4]
+Pauly, et al.             Expires 19 June 2021                  [Page 4]
 
 Internet-Draft                    DEER                     December 2020
 
 
 4.1.  Authenticated Discovery
 
-   If the Unencrypted Resolver's IP address is in a public range, it is
-   considered a global reference identity, and is subject to
-   cryptographic authentication.
-
    In order to be considered an authenticated Equivalent Encrypted
    Resolver, the TLS certificate presented by the Encrypted Resolver
-   MUST contain the IP address of its equivalent Unencrypted Resolver
-   within the SubjectAlternativeName certificate field.  The client MUST
-   check the SubjectAlternativeName field for the Unencrypted Resolver's
-   IP address.  If the certificate can be validated, the client SHOULD
-   use the discovered Equivalent Encrypted Resolver for any cases in
-   which it would have otherwise used the Unencrypted Resolver.
-   Otherwise, the client MUST NOT use the discovered Encrypted Resolver.
-   Additionally, the client SHOULD suppress any further queries for
-   Equivalent Encrypted Resolvers using this Unencrypted Resolver for
-   the length of time indicated by the SVCB record's Time to Live (TTL).
+   MUST contain both the domain name (from the SVCB answer) and the IP
+   address of its equivalent Unencrypted Resolver within the
+   SubjectAlternativeName certificate field.  The client MUST check the
+   SubjectAlternativeName field for both the Unencrypted Resolver's IP
+   address and the advertised name of the Equivalent Encrypted Resolver.
+   If the certificate can be validated, the client SHOULD use the
+   discovered Equivalent Encrypted Resolver for any cases in which it
+   would have otherwise used the Unencrypted Resolver.  If the
+   Equivalent Encrypted Resolver has a different IP address than the
+   Unencrypted Resolver and the TLS certificate does not cover the
+   Unencrypted Resolver address, the client MUST NOT use the discovered
+   Encrypted Resolver.  Additionally, the client SHOULD suppress any
+   further queries for Equivalent Encrypted Resolvers using this
+   Unencrypted Resolver for the length of time indicated by the SVCB
+   record's Time to Live (TTL).
+
+   If the Equivalent Encrypted Resolver and the Unencrypted Resolver
+   share an IP address, clients MAY choose to opportunistically use the
+   Encrypted Resolver even without this certificate check (Section 4.2).
 
 4.2.  Opportunistic Discovery
 
-   If the Unencrypted Resolver's IP address is in a private range, it is
-   considered a local reference identity that cannot be confirmed using
-   TLS certificates.  Instead, the ability to respond to queries
-   confirms control of the address.  The client MUST repeat the
-   discovery process at least every 5 minutes (e.g. by limiting the SVCB
-   response TTL) to confirm that the result is still valid, and MUST
-   stop using any Encrypted Resolver that is no longer included.
+   There are situations where authenticated discovery of encrypted DNS
+   configuration over unencrypted DNS is not possible.  This includes
+   Unencrypted Resolvers on non-public IP addresses whose identity
+   cannot be confirmed using TLS certificates.
 
    Opportunistic Privacy is defined for DoT in Section 4.1 of [RFC7858]
    as a mode in which clients do not validate the name of the resolver
@@ -261,32 +263,24 @@ Internet-Draft                    DEER                     December 2020
    SVCB record for "dns://resolver.arpa" with this "opportunistic"
    approach (not validating the names presented in the
    SubjectAlternativeName field of the certificate) as long as the IP
-   address of the Encrypted Resolver is also a private address (such as
-   those defined in [RFC1918]).  This approach can be used for DoT or
-   DoH.
+   address of the Encrypted Resolver does not differ from the IP address
+   of the Unencrypted Resolver, and that IP address is a private address
+   (such as those defined in [RFC1918]).  This approach can be used for
+   DoT or DoH.
 
-   In order to refer the user to an Encrypted Resolver with a public IP
-   address, the Unencrypted Resolver MUST return a CNAME that aliases
-   "_dns.resolver.arpa" to "_dns.$HOSTNAME".  If the client receives
-   such a CNAME, it MAY proceed with name-based discovery for
-   "$HOSTNAME" (Section 5), subject to the above TTL limit.  Clients
-   MUST NOT connect to an Encrypted Resolver on a public IP address
-   without TLS authentication.
+   If the IP addresses of the Encrypted and Unencrypted Resolvers are
+   not the same, or the shared IP address is not a private IP address,
+   the client MUST NOT use the Encrypted Resolver opportunistically.
 
 
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 5]
+
+Pauly, et al.             Expires 19 June 2021                  [Page 5]
 
 Internet-Draft                    DEER                     December 2020
 
-
-   Resolvers that support authenticated discovery (Section 4.1) can also
-   support opportunistic discovery via local forwarders by publishing
-   such a CNAME record and placing their SVCB records at
-   "_dns.$HOSTNAME".  Local forwarders that wish to prevent this kind of
-   discovery SHOULD intercept queries to "_dns.resolver.arpa".
 
 5.  Discovery Using Resolver Names
 
@@ -324,20 +318,6 @@ Internet-Draft                    DEER                     December 2020
    SubjectAlternativeName fields.  Note that this name verification is
    not related to the DNS resolver that provided the SVCB answer.
 
-
-
-
-
-
-
-
-
-
-Pauly, et al.             Expires 13 June 2021                  [Page 6]
-
-Internet-Draft                    DEER                     December 2020
-
-
    For example, being able to discover an Equivalent Encrypted Resolver
    for a known Encrypted Resolver is useful when a client has a DoT
    configuration for "foo.resolver.example.com" but is on a network that
@@ -346,25 +326,19 @@ Internet-Draft                    DEER                     December 2020
    accessible DoH server) to discover if there is an equivalent DoH
    server for "foo.resolver.example.com".
 
-6.  Optimizations
-
-   To avoid periods of unencrypted resolution, clients SHOULD repeat the
-   discovery query at least several seconds before the current SVCB
-   record expires.  To reduce server load, idle clients MAY defer
-   repeating discovery until there is a pending query, and SHOULD delay
-   the pending query until after discovery completes.
-
-   When the client has performed Opportunistic Discovery (Section 4) and
-   is using an Equivalent Encrypted Resolver on the same private IP
-   address as the Unencrypted Resolver, it MAY use the SVCB record for
-   its full TTL, without the 5 minute limit.
-
-7.  Deployment Considerations
+6.  Deployment Considerations
 
    Resolver deployments that support DEER are advised to consider the
    following points.
 
-7.1.  Caching Forwarders
+
+
+Pauly, et al.             Expires 19 June 2021                  [Page 6]
+
+Internet-Draft                    DEER                     December 2020
+
+
+6.1.  Caching Forwarders
 
    If a caching forwarder consults multiple resolvers, it may be
    possible for it to cache records for the "resolver.arpa" Special Use
@@ -384,84 +358,55 @@ Internet-Draft                    DEER                     December 2020
    "resolver.arpa" SUDN other than for Equivalent Encrypted Resolvers
    under their control.
 
-
-
-
-
-
-Pauly, et al.             Expires 13 June 2021                  [Page 7]
-
-Internet-Draft                    DEER                     December 2020
-
-
-7.2.  Certificate Management
+6.2.  Certificate Management
 
    Resolver owners that support authenticated discovery will need to
    list valid referring IP addresses in their TLS certificates.  This
    may pose challenges for resolvers with a large number of referring IP
    addresses.
 
-7.3.  Legacy Partial Forwarders
+7.  Security Considerations
 
-   A "partial forwarder" is a DNS device that forwards some queries to
-   an upstream resolver, and answers some queries directly.  This
-   includes both filtering and split-horizon DNS behaviors.  As noted in
-   Section 4.2, such devices SHOULD intercept queries to
-   "_dns.resolver.arpa" to ensure that the upstream resolver does not
-   trigger an opportunistic upgrade.  However, some networks contain
-   legacy partial forwarders whose behavior cannot be updated.  For
-   compatibility with legacy partial forwarders, clients MAY impose
-   additional conditions on opportunistic discovery, such as requiring
-   that the Encrypted Resolver is on the same private IP address as the
-   Unencrypted Resolver.
-
-8.  Security Considerations
-
-   Since client can receive DNS SVCB answers over unencrypted DNS, in-
+   Since client can receive DNS SVCB answers over unencrypted DNS, on-
    path attackers can prevent successful discovery by dropping SVCB
-   packets.  When using IP-based discovery (Section 4), it is not
-   possible to distinguish between resolvers that do not have any
-   Equivalent Encrypted Resolver and such an active attack.  Clients
-   that wish to defend against these attacks MUST use name-based
-   discovery (Section 5) with local DNSSEC validation, or otherwise have
-   an authenticated indication that there is an Equivalent Encrypted
-   Resolver.
+   packets.  Clients should be aware that it might not be possible to
+   distinguish between resolvers that do not have any Equivalent
+   Encrypted Resolver and such an active attack.
 
    While the IP address of the Unencrypted Resolver is often provisioned
    over insecure mechanisms, it can also be provisioned securely, such
    as via manual configuration, a VPN, or on a network with protections
-   like RA guard [RFC6105].  An attacker who is temporarily in-path
-   might then try to gain persistent access to the client's DNS traffic
-   by causing the client to discover an apparent Equivalent Encrypted
-   Resolver that is actually operated by the attacker.
-
-   If the IP address of an Unencrypted Resolver is public, clients MUST
-   validate that this IP address is covered by the
-   SubjectAlternativeName of the Encrypted Resolver's TLS certificate
-   (Section 4.1).  This ensures that the Encrypted Resolver is
-   authorized by the operator of the Unencrypted Resolver.
+   like RA guard [RFC6105].  An attacker might try to direct Encrypted
+   DNS traffic to itself by causing the client to think that a
+   discovered Equivalent Encrypted Resolver uses a different IP address
+   from the Unencrypted Resolver.  Such an Encrypted Resolver might have
+   a valid certificate, but be operated by an attacker that is trying to
+   observe or modify user queries without the knowledge of the client or
+   network.
 
 
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 8]
+
+Pauly, et al.             Expires 19 June 2021                  [Page 7]
 
 Internet-Draft                    DEER                     December 2020
 
 
-   When the Unencrypted Resolver has a local IP address, use of the
-   Equivalent Encrypted Resolver (Section 4.2) MUST be subject to strict
-   freshness requirements to ensure that a transient attacker who forges
-   a discovery response cannot gain persistent access to the client's
-   DNS queries.  If the Unencrypted Resolver is on the local network but
-   the Encrypted Resolver is remote, name-based authentication is
-   REQUIRED to ensure that an external attacker cannot intercept the
-   connection.
+   If the IP address of an Equivalent Encrypted Resolver differs from
+   that of an Unencrypted Resolver, clients MUST validate that the IP
+   address of the Unencrypted Resolver is covered by the
+   SubjectAlternativeName of the Encrypted Resolver's TLS certificate
+   (Section 4.1).
 
-9.  IANA Considerations
+   Opportunistic use of Encrypted Resolvers MUST be limited to cases
+   where the Unencrypted Resolver and Equivalent Encrypted Resolver have
+   the same IP address (Section 4.2).
 
-9.1.  Special Use Domain Name "resolver.arpa"
+8.  IANA Considerations
+
+8.1.  Special Use Domain Name "resolver.arpa"
 
    This document calls for the creation of the "resolver.arpa" SUDN.
    This will allow resolvers to respond to queries directed at
@@ -471,9 +416,9 @@ Internet-Draft                    DEER                     December 2020
    reuse for other purposes where the resolver wishes to provide
    information about itself to the client.
 
-10.  References
+9.  References
 
-10.1.  Normative References
+9.1.  Normative References
 
    [I-D.ietf-dnsop-svcb-https]
               Schwartz, B., Bishop, M., and E. Nygren, "Service binding
@@ -500,8 +445,7 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-
-Pauly, et al.             Expires 13 June 2021                  [Page 9]
+Pauly, et al.             Expires 19 June 2021                  [Page 8]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -520,7 +464,7 @@ Internet-Draft                    DEER                     December 2020
               (DoH)", RFC 8484, DOI 10.17487/RFC8484, October 2018,
               <https://www.rfc-editor.org/info/rfc8484>.
 
-10.2.  Informative References
+9.2.  Informative References
 
    [I-D.schinazi-httpbis-doh-preference-hints]
               Schinazi, D., Sullivan, N., and J. Kipp, "DoH Preference
@@ -557,7 +501,7 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                 [Page 10]
+Pauly, et al.             Expires 19 June 2021                  [Page 9]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -613,7 +557,7 @@ Appendix A.  Rationale for using SVCB records
 
 
 
-Pauly, et al.             Expires 13 June 2021                 [Page 11]
+Pauly, et al.             Expires 19 June 2021                 [Page 10]
 
 Internet-Draft                    DEER                     December 2020
 
@@ -669,4 +613,4 @@ Authors' Addresses
 
 
 
-Pauly, et al.             Expires 13 June 2021                 [Page 12]
+Pauly, et al.             Expires 19 June 2021                 [Page 11]

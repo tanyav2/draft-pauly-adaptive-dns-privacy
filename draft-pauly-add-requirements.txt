@@ -5,13 +5,13 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Informational                                Apple Inc.
-Expires: 13 June 2021                                          C.A. Wood
+Expires: 19 June 2021                                          C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                        10 December 2020
+                                                        16 December 2020
 
 
                   Adaptive DNS Discovery Requirements
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2021.
+   This Internet-Draft will expire on 19 June 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 1]
+Pauly, et al.             Expires 19 June 2021                  [Page 1]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 2]
+Pauly, et al.             Expires 19 June 2021                  [Page 2]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -165,7 +165,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 3]
+Pauly, et al.             Expires 19 June 2021                  [Page 3]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -221,7 +221,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 4]
+Pauly, et al.             Expires 19 June 2021                  [Page 4]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -277,7 +277,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 5]
+Pauly, et al.             Expires 19 June 2021                  [Page 5]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -333,7 +333,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 6]
+Pauly, et al.             Expires 19 June 2021                  [Page 6]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -389,7 +389,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 7]
+Pauly, et al.             Expires 19 June 2021                  [Page 7]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -445,7 +445,7 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 8]
+Pauly, et al.             Expires 19 June 2021                  [Page 8]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -501,7 +501,7 @@ Authors' Addresses
 
 
 
-Pauly, et al.             Expires 13 June 2021                  [Page 9]
+Pauly, et al.             Expires 19 June 2021                  [Page 9]
 
 Internet-Draft              ADD Requirements               December 2020
 
@@ -557,4 +557,4 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 13 June 2021                 [Page 10]
+Pauly, et al.             Expires 19 June 2021                 [Page 10]
