@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-12-13T00:28:16.745131+00:00",
+  "timestamp": "2020-12-17T00:29:17.401293+00:00",
   "repo": "tfpauly/draft-pauly-adaptive-dns-privacy",
   "labels": [
     {
@@ -2515,7 +2515,68 @@
       "labels": [],
       "body": "The `ObliviousDoHMessage` format is quite flexible in how large the `key_id` and `encrypted_message` values are:\r\n\r\n~~~\r\n   struct {\r\n      uint8  message_type;\r\n      opaque key_id<0..2^16-1>;\r\n      opaque encrypted_message<1..2^16-1>;\r\n   } ObliviousDoHMessage;\r\n~~~\r\n\r\nWe should recommend that proxies and targets enforce reasonable limits for these. For example, no DNS query will bump against the 2^16-1 length limit. \r\n\r\nWhile we're here, we should probably also reduce `key_id`'s allotted length to a single byte. ",
       "createdAt": "2020-12-12T16:48:11Z",
-      "updatedAt": "2020-12-12T16:48:16Z",
+      "updatedAt": "2020-12-16T22:01:21Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tanyav2",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "[XDR](https://tools.ietf.org/html/rfc4506) which seems to be the standard wireformat encoding says that `opaque` fields must have a 2 byte length encoding. ",
+          "createdAt": "2020-12-15T23:48:41Z",
+          "updatedAt": "2020-12-15T23:48:41Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We use TLS encoding here, for what it's worth. We're not bound to any XDR-related rules.",
+          "createdAt": "2020-12-15T23:50:24Z",
+          "updatedAt": "2020-12-15T23:50:24Z"
+        },
+        {
+          "author": "tanyav2",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Ah, I wasn't aware that was a separate encoding.",
+          "createdAt": "2020-12-16T03:16:43Z",
+          "updatedAt": "2020-12-16T03:16:43Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "@chris-wood I'm fine with specifying limits on the value, but I think it's fine to leave the length fields being 2 bytes for consistency.",
+          "createdAt": "2020-12-16T22:01:21Z",
+          "updatedAt": "2020-12-16T22:01:21Z"
+        }
+      ]
+    },
+    {
+      "number": 157,
+      "id": "MDU6SXNzdWU3NjgzMTEwMDc=",
+      "title": "Require proxies to passthrough HTTP error codes from target",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/157",
+      "state": "OPEN",
+      "author": "tanyav2",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We should require proxies to pass through any error codes received from the target back to the client. This will make it much easier for the client to interpret what went wrong with their query, such as a connection failure to target, or a bad key id (401) etc. Currently, all this valuable debugging information could potentially be lost.\r\n\r\nOne could also make the case that these failure should be distinguished from failure codes of the proxy itself, so if a request appears reasonable to the proxy, but the target returns, say a 401, the proxy should send back a 200, but I'm not sure requiring the client to parse the response for a 401 makes sense. That is, unless we have a fixed format that the proxy returns which includes the target's error code.\r\n\r\ncc @chris-wood @tfpauly ",
+      "createdAt": "2020-12-15T23:53:43Z",
+      "updatedAt": "2020-12-15T23:57:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 159,
+      "id": "MDU6SXNzdWU3NjkzNjA0Mjk=",
+      "title": "[ODoH] Client bootstrapping concerns. How should client obtain T's SVCB/HTTPS records?",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/159",
+      "state": "OPEN",
+      "author": "dmcardle",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Is it fair to say the goal is that the attacker cannot link clients to corresponding (query, answer) pairs, even when one of proxy P or target T is compromised?\r\n\r\nGiven that goal, let's do a case analysis to determine how the client should obtain T's SVCB/HTTPS records.\r\n\r\n**Case 1: client queries target T for T's SVCB/HTTPS records.**\r\n\r\nIf target T is compromised, it could serve a unique public key to each client and record the client's IP address. When T receives proxied queries from P, it can quickly recover the client's original IP address based on `ObliviousDoHMessage.key_id`. The attacker achieved linkability.\r\n\r\n**Case 2: client queries proxy P for T's SVCB/HTTPS records.**\r\n\r\nIf proxy P is compromised, it could generate its own HPKE keypair(s) and serve the public key to the client. The client would dutifully encrypt queries for the attacker, who can trivially decrypt them. Since P can directly observe the client's IP address, the attacker has achieved linkability.\r\n\r\n**Case 3: client queries a third-party resolver (neither P nor T) for T's SVCB/HTTPS records.**\r\n\r\nI think this is what we'd want the client to do, as it's the only case that requires multiple parties to be compromised (or collusion).\r\n\r\nFYI @ericorth @davidben",
+      "createdAt": "2020-12-16T23:58:57Z",
+      "updatedAt": "2020-12-17T00:21:37Z",
       "closedAt": null,
       "comments": []
     }
@@ -11576,6 +11637,32 @@
       "mergeCommit": {
         "oid": "7d40a22eea5c400d8ce4f1e349cc3bdb5a91a169"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 158,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTQxMjA1ODU2",
+      "title": "Bump HPKE to -07.",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/pull/158",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "cc @tanyav2 ",
+      "createdAt": "2020-12-16T14:30:33Z",
+      "updatedAt": "2020-12-16T14:30:33Z",
+      "baseRepository": "tfpauly/draft-pauly-adaptive-dns-privacy",
+      "baseRefName": "master",
+      "baseRefOid": "7d40a22eea5c400d8ce4f1e349cc3bdb5a91a169",
+      "headRepository": "tfpauly/draft-pauly-adaptive-dns-privacy",
+      "headRefName": "caw/bump-hpke",
+      "headRefOid": "b0f10aa884b421a0307768b8f06f6ae4a5efe381",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
