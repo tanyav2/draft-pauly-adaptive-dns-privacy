@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-12-17T00:29:17.401293+00:00",
+  "timestamp": "2020-12-20T00:29:05.867402+00:00",
   "repo": "tfpauly/draft-pauly-adaptive-dns-privacy",
   "labels": [
     {
@@ -2576,9 +2576,45 @@
       "labels": [],
       "body": "Is it fair to say the goal is that the attacker cannot link clients to corresponding (query, answer) pairs, even when one of proxy P or target T is compromised?\r\n\r\nGiven that goal, let's do a case analysis to determine how the client should obtain T's SVCB/HTTPS records.\r\n\r\n**Case 1: client queries target T for T's SVCB/HTTPS records.**\r\n\r\nIf target T is compromised, it could serve a unique public key to each client and record the client's IP address. When T receives proxied queries from P, it can quickly recover the client's original IP address based on `ObliviousDoHMessage.key_id`. The attacker achieved linkability.\r\n\r\n**Case 2: client queries proxy P for T's SVCB/HTTPS records.**\r\n\r\nIf proxy P is compromised, it could generate its own HPKE keypair(s) and serve the public key to the client. The client would dutifully encrypt queries for the attacker, who can trivially decrypt them. Since P can directly observe the client's IP address, the attacker has achieved linkability.\r\n\r\n**Case 3: client queries a third-party resolver (neither P nor T) for T's SVCB/HTTPS records.**\r\n\r\nI think this is what we'd want the client to do, as it's the only case that requires multiple parties to be compromised (or collusion).\r\n\r\nFYI @ericorth @davidben",
       "createdAt": "2020-12-16T23:58:57Z",
-      "updatedAt": "2020-12-17T00:21:37Z",
+      "updatedAt": "2020-12-19T15:13:00Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Are you assuming a non-DNSSEC-validating stub resolver?",
+          "createdAt": "2020-12-17T02:06:25Z",
+          "updatedAt": "2020-12-17T02:06:25Z"
+        },
+        {
+          "author": "dmcardle",
+          "authorAssociation": "NONE",
+          "body": "If the attacker has access to the compromised host's private key material, it could just forge new DNSSEC-validating records, right?\r\n\r\nThis is one of the assumptions made in the Security Considerations section.\r\n\r\n> Once compromised, the attacker has access to all session information and private key material.",
+          "createdAt": "2020-12-17T02:44:36Z",
+          "updatedAt": "2020-12-17T02:44:36Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> If the attacker has access to the compromised host's private key material, it could just forge new DNSSEC-validating records, right?\r\n\r\nIf that includes the DNSSEC private keys, then yeah, that seems right. I think the text you quoted from the considerations is more about the TLS keying material. \r\n\r\nAnyway, to the main comment (and thanks for reading and filing an issue!), I think something along the lines of (2) or (3) is a reasonable deployment story for applications that aren't willing to fetch the configs from DNS. (There are [reasonable concerns](https://www.usenix.org/system/files/conference/usenixsecurity13/sec13-paper_lian.pdf) with the DNSSEC requirement as-is.) I really don't want to impose any sort of transparency requirements on the system.\r\n\r\nWe certainly need to nail down the key management and discovery story here. :-)",
+          "createdAt": "2020-12-17T14:27:34Z",
+          "updatedAt": "2020-12-17T14:27:34Z"
+        },
+        {
+          "author": "dmcardle",
+          "authorAssociation": "NONE",
+          "body": "> I think something along the lines of (2) or (3) is a reasonable deployment story for applications that aren't willing to fetch the configs from DNS\r\n\r\nI think we're on the same page now. Could you clarify the part about applications that aren't willing to fetch configs from DNS? I was imagining this bootstrapping step is just a DoH query to some resolver: P, T, or other.\r\n\r\nUpon further thought, the problem I described in case 2 (bootstrapping from P) *does* rely on a non-DNSSEC-validating stub resolver. If only P is compromised, the attacker cannot forge T-signed records.\r\n\r\nBut I believe case 1 (bootstrapping from T) remains a bad idea because a compromised T can forge/sign records for itself, if we believe the DNSSEC private keys are compromised as well.",
+          "createdAt": "2020-12-17T21:50:41Z",
+          "updatedAt": "2020-12-17T21:50:41Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Could you clarify the part about applications that aren't willing to fetch configs from DNS? I was imagining this bootstrapping step is just a DoH query to some resolver: P, T, or other.\r\n\r\nSorry, I was referring to case (1) here, wherein the the client knows the target it wants to use and, as you say, just sends a DoH query directly to it. ",
+          "createdAt": "2020-12-19T15:13:00Z",
+          "updatedAt": "2020-12-19T15:13:00Z"
+        }
+      ]
     }
   ],
   "pulls": [
