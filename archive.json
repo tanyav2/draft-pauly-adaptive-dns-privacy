@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-12-24T00:37:55.138155+00:00",
+  "timestamp": "2021-01-10T00:47:57.987641+00:00",
   "repo": "tfpauly/draft-pauly-adaptive-dns-privacy",
   "labels": [
     {
@@ -2657,6 +2657,38 @@
           "updatedAt": "2020-12-22T23:57:10Z"
         }
       ]
+    },
+    {
+      "number": 160,
+      "id": "MDU6SXNzdWU3ODE1MTcwNDk=",
+      "title": "DEER: Clarification of SUDN",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/160",
+      "state": "OPEN",
+      "author": "awfulhak",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The Special Use Domain Name (SUDN) ```resolver.arpa``` needs more clarification.  Specifically:\r\n- Queries against the ```.arpa``` nameservers\r\n  The draft should mention that ```.arpa``` is a delegated zone, currently served by the root nameservers.  Clients that query a resolver that is unaware of this requirement will \"leak\" queries to the root nameservers.\r\n- When ```_dns.resolver.arpa/SVCB``` is not present in a resolver configuration\r\n  Section 6.1 discusses how a forwarder should behave and suggests that results should not be cached other than for Equivalent Encrypted Resolvers under their control.  How is that determined?\r\n  There is no discussion around a non-forwarding resolver's behaviour.  Should it return NODATA?\r\n  Forwarding queries to ```_dns.resolver.arpa/SVCB``` will attempt to attach a client to an upstream resource's equivalent resolver.  If that equivalent resolver's cert doesn't include the forwarder, the client must reject the answer.  Is it not therefore the case that the forwarder caching behaviour is irrelevant?  All valid responses to this query must be equivalent to the forwarder itself.\r\n- When ```_dns.resolver.arpa/SVCB``` is present in a resolver configuration\r\n  I would suggest some clarification wording something like this: The expectation is that this record set will detail equivalent resolvers.  A client that chooses not to interact with any of these equivalent resolvers SHOULD continue to use the unencrypted resolver, honouring the SVCB TTL.  When the SVCB TTL expires, the client may choose to re-query in an attempt to discover newly available equivalents.\r\n\r\nI would suggest (prefer?) changing the SUDN behaviour so that queries against it are __never__ sent upstream.  Resolvers (and forwarders) that do not have a configured ```_dns.resolver.arpa/SVCB``` RRset should return NODATA.  This would mean that ```resolver.arpa``` SUDN RRsets are always specific to the IP queried.",
+      "createdAt": "2021-01-07T18:26:40Z",
+      "updatedAt": "2021-01-07T18:26:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 161,
+      "id": "MDU6SXNzdWU3ODE4NzEwMjI=",
+      "title": "Clarification of expectations in certain NAT environments",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/161",
+      "state": "OPEN",
+      "author": "vparla",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It would be helpful if there was a paragraph that described what the expected behavior is in certain NAT scenarios.\r\n\r\nSince the IP address must be embedded in the TLS certificate, certain NAT scenarios could present a problem for this approach.\r\n\r\nFor example, if the assigned DNS IP addresses via DHCP are not the actual IP address(es) associated with the DNS service, there could be an issue.  How would such a deployment scenario be addressed? \r\n",
+      "createdAt": "2021-01-08T06:03:47Z",
+      "updatedAt": "2021-01-08T06:03:47Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
