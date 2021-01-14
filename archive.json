@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-01-10T00:47:57.987641+00:00",
+  "timestamp": "2021-01-14T01:07:23.054588+00:00",
   "repo": "tfpauly/draft-pauly-adaptive-dns-privacy",
   "labels": [
     {
@@ -9,39 +9,19 @@
       "color": "d73a4a"
     },
     {
-      "name": "duplicate",
-      "description": "This issue or pull request already exists",
-      "color": "cfd3d7"
-    },
-    {
-      "name": "enhancement",
-      "description": "New feature or request",
-      "color": "a2eeef"
-    },
-    {
       "name": "ready for text",
       "description": "Ready to be written up",
       "color": "008672"
     },
     {
-      "name": "good first issue",
-      "description": "Good for newcomers",
-      "color": "7057ff"
+      "name": "odoh",
+      "description": "ODoH",
+      "color": "d4c5f9"
     },
     {
-      "name": "invalid",
-      "description": "This doesn't seem right",
-      "color": "e4e669"
-    },
-    {
-      "name": "question",
-      "description": "Further information is requested",
-      "color": "d876e3"
-    },
-    {
-      "name": "wontfix",
-      "description": "This will not be worked on",
-      "color": "ffffff"
+      "name": "editorial",
+      "description": "Editorial",
+      "color": "bfd4f2"
     }
   ],
   "issues": [
@@ -463,11 +443,13 @@
       "state": "OPEN",
       "author": "mcmanus",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "chris-wood"
+      ],
       "labels": [],
       "body": "it would probably be good to define http errors for \r\n\r\n* proxy doesn't want to forward this (403? 404?)\r\n* target can't decrypt this (400?)\r\n\r\n",
       "createdAt": "2019-08-29T13:39:44Z",
-      "updatedAt": "2019-08-29T13:39:59Z",
+      "updatedAt": "2021-01-13T23:49:39Z",
       "closedAt": null,
       "comments": []
     },
@@ -663,11 +645,13 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "discuss"
+        "discuss",
+        "editorial",
+        "odoh"
       ],
       "body": "The document currently requires every designated doh server also be willing to act as a proxy server and target server.. this is tacitly a commitment to serve arbitrary amounts of recursive traffic in order to be able to authoritatively serve any domain over adaptive dns.\r\n\r\nI expect that to be too much to ask of many folks to be successful.\r\n\r\nAnd even among the folks that can offer that kind of service, they might reasonably want to provision it into different origins and infrastructures than they use for the authoritative designated doh server traffic.\r\n\r\nThe lack of quality control would also be a factor.\r\n\r\nI suggest we filter the potential obfuscating servers by a new 'isProxy' attribute on their signed DOHNS RRs. Further,. we can bootstrap the system with a set of well known Proxies and Targets downloadable from a well known URL: https://www.doh-root-servers.net/proxyList - each proxy in that list would need a corresponding DOHNS with the isProxy attribute. It seems that URL could be looked up in a privacy insensitive way.\r\n\r\n",
       "createdAt": "2019-08-29T20:35:45Z",
-      "updatedAt": "2019-11-01T22:00:10Z",
+      "updatedAt": "2021-01-13T23:56:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -800,11 +784,13 @@
       "state": "OPEN",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "chris-wood"
+      ],
       "labels": [],
       "body": "What happens if proxies decide to stop proxying? What happens if there are no proxies left? ",
       "createdAt": "2019-09-05T17:18:30Z",
-      "updatedAt": "2019-09-05T17:18:46Z",
+      "updatedAt": "2021-01-13T23:50:22Z",
       "closedAt": null,
       "comments": []
     },
@@ -1429,10 +1415,13 @@
       "assignees": [
         "chris-wood"
       ],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "A colluding client and target can currently use proxies to send anything. This might be worth noting in the security considerations.",
       "createdAt": "2019-11-22T03:03:27Z",
-      "updatedAt": "2020-12-12T16:50:31Z",
+      "updatedAt": "2021-01-13T23:56:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -1502,10 +1491,13 @@
       "assignees": [
         "chris-wood"
       ],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "A concise description of what ODoH requires (computation-wise) beyond normal DoH is probably warranted. ",
       "createdAt": "2019-11-22T03:05:44Z",
-      "updatedAt": "2020-12-12T16:50:24Z",
+      "updatedAt": "2021-01-13T23:56:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -1685,16 +1677,24 @@
       "id": "MDU6SXNzdWU2MzgwNDYwODM=",
       "title": "Specify ODoH HTTP(/3) extension",
       "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/97",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "We should negotiate use of ODoH via an HTTP(/3) extension so that we're compatible with MASQUE. See https://datatracker.ietf.org/wg/masque/about/.",
       "createdAt": "2020-06-12T23:18:44Z",
-      "updatedAt": "2020-06-12T23:18:44Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-01-13T23:48:35Z",
+      "closedAt": "2021-01-13T23:48:34Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing as no longer relevant.",
+          "createdAt": "2021-01-13T23:48:34Z",
+          "updatedAt": "2021-01-13T23:48:34Z"
+        }
+      ]
     },
     {
       "number": 99,
@@ -1705,10 +1705,13 @@
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "Proxies should probably have some way of validating that a target can and is willing to receive data. The mechanics of this validation mechanism might vary depending on when and how often the validation must be done.",
       "createdAt": "2020-06-19T15:47:07Z",
-      "updatedAt": "2020-06-19T16:14:32Z",
+      "updatedAt": "2021-01-13T23:57:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -1769,10 +1772,13 @@
       "author": "magicalo",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "Is it still possible to \"track\" the user by issuing a per-requestor public key from the Target server?  I presume a keydiscovery is done only once by a client (or infrequently enough that it can provide a tracking-vector).\r\n\r\nIf the above is accurate, would it be useful for a client to detect this case by doing keydiscovery more than once -- and/or -- have the client request this on some randomized basis to thwart such tracking techniques.\r\n\r\nIf I am totally misunderstanding this, I apologize in advance.\r\n\r\nIf I understood the role of the proxy correctly - the Proxy is terminating the DoH session and creating a new session to the Target.  This ensures IP privacy and crypto-privacy.  Correct?",
       "createdAt": "2020-07-02T20:43:48Z",
-      "updatedAt": "2020-07-09T03:16:36Z",
+      "updatedAt": "2021-01-13T23:56:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -1781,6 +1787,13 @@
           "body": "The key is distributed in DNS records, like the TLS client hello key. Generally, the entity that serves up these DNS records to clients is a recursive that is entirely separate from the record owner, and the record is cached. Targeting one client shouldn\u2019t be feasible. This is even harder to do with DNSSEC. ",
           "createdAt": "2020-07-09T03:16:36Z",
           "updatedAt": "2020-07-09T03:16:36Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "Sounds like mainly this can just have more explanation/discussion",
+          "createdAt": "2021-01-13T23:56:26Z",
+          "updatedAt": "2021-01-13T23:56:26Z"
         }
       ]
     },
@@ -1811,10 +1824,13 @@
       "author": "sudheesh001",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "I think it'd be a nice addition to the drafts' security considerations to mention about the possibility of flooding attacks or denial of service (DoS) attacks which could take place from the proxies. This situation could occur in various scenarios:\r\n1. Where the node running the proxy is compromised: The treatment for this should ideally be the same as a compromised client.\r\n2. When there are clients using a proxy to create a flooding attack by amplifying the same messages to different target resolvers. i.e.\r\n    - Malicious clients which issue the same information to multiple targets by changing the targethost & targetpath of the request. `https://proxy.odoh.example.com/dns-query?targethost=1.1.1.1&targetpath=/dns-query`\r\n    - An incorrect encryption of the dns Question cannot be detected until decrypted by the target which result in the target accepting the message, decrypting it and processing it under the failure conditions. A flood of such messages initiated by a compromised proxy themselves or through malicious client might overwhelm the targets.\r\n\r\nI think it'd be nice to suggest rate limiting as an approach to such attacks or explore the usage of transparency / monitoring approaches. \ud83d\ude04 ",
       "createdAt": "2020-07-09T18:27:06Z",
-      "updatedAt": "2020-07-09T18:44:47Z",
+      "updatedAt": "2021-01-14T00:05:27Z",
       "closedAt": null,
       "comments": []
     },
@@ -1827,10 +1843,13 @@
       "author": "sudheesh001",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "The current implementation doesn't restrict users from using an Oblivious Proxy and an Oblivious Target run by the same organization. Doing so would allow the organization to put together the relevant information of the client by IP address and loses the privacy guarantees this was intended for.\r\n\r\nA user however could use the Proxy and Target provided by the same organization if the user trusts the organization with respect to deleting or not storing the Client IP address information or leaking it to trackers. Such usage depends heavily on the users' personal privacy model.\r\n\r\nI think it'd be nice to spell out these possible considerations in the draft for privacy guarantees and when ODOH would be effective.",
       "createdAt": "2020-07-09T19:40:46Z",
-      "updatedAt": "2020-07-09T19:40:46Z",
+      "updatedAt": "2021-01-13T23:57:00Z",
       "closedAt": null,
       "comments": []
     },
@@ -1867,10 +1886,13 @@
       "author": "sudheesh001",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "It is implicit in the usage of ODOH infrastructure (proxy and target) that the user places an implicit trust in the proxy to anonymize and not propagate the client IP addresses to the target resolvers. I feel that this probably needs to be made explicit in the draft.",
       "createdAt": "2020-07-09T19:46:56Z",
-      "updatedAt": "2020-07-09T19:46:56Z",
+      "updatedAt": "2021-01-13T23:57:00Z",
       "closedAt": null,
       "comments": []
     },
@@ -1879,16 +1901,26 @@
       "id": "MDU6SXNzdWU2NTQzMDk0MTE=",
       "title": "Explore mechanisms to audit proxies or rank the proxies by their reliability/privacy guarantees",
       "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/112",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "sudheesh001",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "odoh"
+      ],
       "body": "This issue probably dovetails into the discovery mechanism of the proxies and targets in ODOH. In order to prevent flooding issues (#108) it's probably necessary to establish some means of trust in the proxies through transparency or monitoring similar to CT infrastructure which can indicate history of breaches/compromise, reliability/uptime of a proxy or a target.\r\n\r\nAn auditing based approach seems incredibly difficult for something like this but maybe there's a need for constant probing or honeypots? At a high level the problem seems to be the following:\r\n\r\n> How do we prove/disprove that the proxy is not sending client information elsewhere?",
       "createdAt": "2020-07-09T19:53:20Z",
-      "updatedAt": "2020-07-09T19:53:20Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-01-13T23:56:22Z",
+      "closedAt": "2021-01-13T23:56:22Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "While useful, this seems like a larger ecosystem question beyond the scope of the ODoH protocol, so I'm closing. ",
+          "createdAt": "2021-01-13T23:56:22Z",
+          "updatedAt": "2021-01-13T23:56:22Z"
+        }
+      ]
     },
     {
       "number": 113,
@@ -1899,10 +1931,13 @@
       "author": "sudheesh001",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "I think it'd also be important to spell out a few more privacy constraints for users of ODOH.\r\n\r\n**Scenario 1**\r\n\r\nIf the Oblivious Target is operated by the ISP of the user/client, it becomes possible for the ISP to identify the users' ODOH query proxied to it based on the immediate connections to the IP address returned as a response.\r\n\r\nFor example: Let the client C make an oblivious DOH query to a proxy P operated by a third party which is forwarded to an Oblivious Target operated by the same ISP used by client C. The response of the DNS resolver sent to the client is known by the ISP and any immediate connections to the IP address returned as the response can be used to identify the client to the Oblivious query.\r\n\r\n**Scenario 2**\r\n\r\nIf the Oblivious Proxy is operated by the ISP of the user/client, it becomes possible for the ISP to identify the query of the user with a reasonable guarantee.\r\n\r\nFor example: Let the client C make an oblivious DOH query to a proxy P operated by their ISP and forwarded to an Oblivious Target (eg. Cloudflare). An immediate connection request to the address resolved after obtaining the response from the Oblivious Target flowing through the ISP can be used by the ISP to identify the query made by the client. \r\n\r\nThis is however, no different risk from currently adopted approaches where the ISPs can track the clients and the IP addresses which the clients attempt to access and create a map of IP addresses to hostnames to identify which websites or resources on the Internet the client is attempting to access. \r\n\r\nI believe it becomes important to identify and detail in the draft that -- ODOH poses no additional privacy risks in these scenarios.",
       "createdAt": "2020-07-09T20:30:10Z",
-      "updatedAt": "2020-07-09T20:30:10Z",
+      "updatedAt": "2021-01-13T23:57:00Z",
       "closedAt": null,
       "comments": []
     },
@@ -1918,7 +1953,7 @@
       "labels": [],
       "body": "draft-pauly-add-resolver-discovery\r\n\r\nIn the Introduction section\r\n\"privacy-sensitive clients might prefer to use an encrypted DNS service other than the one locally provisioned in order to prevent interception, profiling, or modification by entities other than the operator of the name service for the name being resolved\"\r\n\r\nTracking and cross-referencing of client's users are also actions that privacy-sensitive clients would want to avoid ",
       "createdAt": "2020-07-16T22:11:17Z",
-      "updatedAt": "2020-07-16T22:18:05Z",
+      "updatedAt": "2021-01-13T23:53:20Z",
       "closedAt": null,
       "comments": []
     },
@@ -2065,10 +2100,12 @@
       "author": "FredericJacobs",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial"
+      ],
       "body": "Whitelist could be replaced with allow list to make the language of the spec more inclusive.\r\n\r\n```\r\nblacklist/whitelist (n., v.)\r\nDon\u2019t use. Instead, use an alternative that\u2019s appropriate to the context, such as deny list/allow list or unapproved list/approved list.\r\n```\r\nhttps://help.apple.com/applestyleguide/#/apsg1a3a0436?sub=apd9aaca4623",
       "createdAt": "2020-10-14T21:24:52Z",
-      "updatedAt": "2020-10-31T20:14:59Z",
+      "updatedAt": "2021-01-13T23:52:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -2120,10 +2157,13 @@
       "author": "Lekensteyn",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "odoh",
+        "ready for text"
+      ],
       "body": "The current section on [public key discovery](https://tools.ietf.org/html/draft-pauly-dprive-oblivious-doh-02#section-5) defines how a client can discover a public key. However it does not describe how long this key can be used and behaviour around key rotation is unspecified.\r\n\r\nA legitimate use is key rotation in case of compromise, or regular key rotation to minimize the impact of key compromise.\r\n\r\n- What would a reasonable interval be for operators managing DNS and the target? 1 hour? 1 day? 1 week?\r\n- Should the DNS TTL be used as hint for expiry?\r\n- If a client uses a stale key and receives a 400 response, should it recover by fetching a new public key and retry? Or should the server respond with a different HTTP status code to distinguish key expiry from decryption errors?\r\n\r\nIf keys have to be fetched too often, it could create a tracking vector, similar to https://tools.ietf.org/html/draft-ietf-tls-esni-08#section-10.3\r\n",
       "createdAt": "2020-10-27T12:01:35Z",
-      "updatedAt": "2020-12-11T00:45:51Z",
+      "updatedAt": "2021-01-14T00:03:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -2158,10 +2198,13 @@
       "author": "skepticfx",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "_Not entirely sure how this fits in the threat model, but I thought it is worth documenting this scenario so implementations can pay attention._ \r\n\r\n### Attack\r\nAn oDoH target can abuse the round-robin mechanism in the client's transport implementations(TCP, UDP transports, etc.)\r\n\r\nA DNS response for a query type=A can contain multiple answers,\r\n```\r\n$ dig website.com +short\r\n172.67.27.106\r\n104.22.67.195\r\n104.22.66.195\r\n```\r\n\r\nAs a malicious oDoH target, it gets to decide the number of answer records and the value in those answers. In the example above, the DNS query(Q=website.com) has 3 IP addresses in the response. Instead, the oDoH target can respond with (A+1) IP addresses, where the oDoH target controls the new answer(say X).\r\n\r\nIn an active attack, this would look like - \r\n```\r\n$ dig website.com +short\r\nX=<ip-address-controlled-by-oDoH-target>\r\n172.67.27.106\r\n104.22.67.195\r\n104.22.66.195\r\n```\r\n\r\nDepending on the client's implementation of the DNS round-robin, the client would first Dial(X) before the other set of answers in A. The server at the IP address(X) serving this request would timeout but note the client's IP address. The oDoH target can now learn the client's IP address and the corresponding DNS query.\r\n\r\n### Mitigations\r\nSince this is an active attack, it is possible to use external monitoring to ensure the oDoH target behaves as expected. ",
       "createdAt": "2020-10-27T15:49:23Z",
-      "updatedAt": "2020-10-27T20:19:17Z",
+      "updatedAt": "2021-01-14T00:05:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -2189,10 +2232,13 @@
       "author": "skepticfx",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "### Issue\r\n\r\nA malicious oDoH target can track a given client depending on how the oDoH proxy manages connections between clients and the target. In cases where the proxy creates a dedicated, long-lived connection with the target - it is possible for the target to track the client and its corresponding DNS query without actually learning the client's IP address.\r\n \r\n### Mitigation\r\n\r\nIt so happens that the proxy connection management is a useful topic for performance reasons. And it is intuitive to not establish a dedicated connection(between the proxy and target) for each client to save resources on the proxy's side. Thus by multiplexing connections between the proxy and the target and by choosing a connection randomly for each query would mitigate this attack. ",
       "createdAt": "2020-10-27T16:40:30Z",
-      "updatedAt": "2020-10-27T16:40:30Z",
+      "updatedAt": "2021-01-13T23:52:34Z",
       "closedAt": null,
       "comments": []
     },
@@ -2378,12 +2424,23 @@
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "editorial",
+        "odoh"
+      ],
       "body": "Clients technically can send their subnet in encrypted queries, if they want rough geo-based responses from targets. We should at least discuss this, given recent feedback on the topic during IETF 109.",
       "createdAt": "2020-11-20T01:02:57Z",
-      "updatedAt": "2020-11-20T01:02:57Z",
+      "updatedAt": "2021-01-13T23:52:13Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "This is technically already allowed, just needs to be spelled out.",
+          "createdAt": "2021-01-13T23:52:12Z",
+          "updatedAt": "2021-01-13T23:52:12Z"
+        }
+      ]
     },
     {
       "number": 150,
@@ -2512,10 +2569,13 @@
       "assignees": [
         "chris-wood"
       ],
-      "labels": [],
+      "labels": [
+        "odoh",
+        "ready for text"
+      ],
       "body": "The `ObliviousDoHMessage` format is quite flexible in how large the `key_id` and `encrypted_message` values are:\r\n\r\n~~~\r\n   struct {\r\n      uint8  message_type;\r\n      opaque key_id<0..2^16-1>;\r\n      opaque encrypted_message<1..2^16-1>;\r\n   } ObliviousDoHMessage;\r\n~~~\r\n\r\nWe should recommend that proxies and targets enforce reasonable limits for these. For example, no DNS query will bump against the 2^16-1 length limit. \r\n\r\nWhile we're here, we should probably also reduce `key_id`'s allotted length to a single byte. ",
       "createdAt": "2020-12-12T16:48:11Z",
-      "updatedAt": "2020-12-16T22:01:21Z",
+      "updatedAt": "2021-01-14T00:06:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -2557,10 +2617,13 @@
       "author": "tanyav2",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "odoh",
+        "ready for text"
+      ],
       "body": "We should require proxies to pass through any error codes received from the target back to the client. This will make it much easier for the client to interpret what went wrong with their query, such as a connection failure to target, or a bad key id (401) etc. Currently, all this valuable debugging information could potentially be lost.\r\n\r\nOne could also make the case that these failure should be distinguished from failure codes of the proxy itself, so if a request appears reasonable to the proxy, but the target returns, say a 401, the proxy should send back a 200, but I'm not sure requiring the client to parse the response for a 401 makes sense. That is, unless we have a fixed format that the proxy returns which includes the target's error code.\r\n\r\ncc @chris-wood @tfpauly ",
       "createdAt": "2020-12-15T23:53:43Z",
-      "updatedAt": "2020-12-15T23:57:55Z",
+      "updatedAt": "2021-01-14T00:03:17Z",
       "closedAt": null,
       "comments": []
     },
@@ -2573,10 +2636,13 @@
       "author": "dmcardle",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "discuss",
+        "odoh"
+      ],
       "body": "Is it fair to say the goal is that the attacker cannot link clients to corresponding (query, answer) pairs, even when one of proxy P or target T is compromised?\r\n\r\nGiven that goal, let's do a case analysis to determine how the client should obtain T's SVCB/HTTPS records.\r\n\r\n**Case 1: client queries target T for T's SVCB/HTTPS records.**\r\n\r\nIf target T is compromised, it could serve a unique public key to each client and record the client's IP address. When T receives proxied queries from P, it can quickly recover the client's original IP address based on `ObliviousDoHMessage.key_id`. The attacker achieved linkability.\r\n\r\n**Case 2: client queries proxy P for T's SVCB/HTTPS records.**\r\n\r\nIf proxy P is compromised, it could generate its own HPKE keypair(s) and serve the public key to the client. The client would dutifully encrypt queries for the attacker, who can trivially decrypt them. Since P can directly observe the client's IP address, the attacker has achieved linkability.\r\n\r\n**Case 3: client queries a third-party resolver (neither P nor T) for T's SVCB/HTTPS records.**\r\n\r\nI think this is what we'd want the client to do, as it's the only case that requires multiple parties to be compromised (or collusion).\r\n\r\nFYI @ericorth @davidben",
       "createdAt": "2020-12-16T23:58:57Z",
-      "updatedAt": "2020-12-22T23:57:10Z",
+      "updatedAt": "2021-01-14T00:03:57Z",
       "closedAt": null,
       "comments": [
         {
@@ -2666,13 +2732,30 @@
       "state": "OPEN",
       "author": "awfulhak",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "mstojens"
+      ],
       "labels": [],
       "body": "The Special Use Domain Name (SUDN) ```resolver.arpa``` needs more clarification.  Specifically:\r\n- Queries against the ```.arpa``` nameservers\r\n  The draft should mention that ```.arpa``` is a delegated zone, currently served by the root nameservers.  Clients that query a resolver that is unaware of this requirement will \"leak\" queries to the root nameservers.\r\n- When ```_dns.resolver.arpa/SVCB``` is not present in a resolver configuration\r\n  Section 6.1 discusses how a forwarder should behave and suggests that results should not be cached other than for Equivalent Encrypted Resolvers under their control.  How is that determined?\r\n  There is no discussion around a non-forwarding resolver's behaviour.  Should it return NODATA?\r\n  Forwarding queries to ```_dns.resolver.arpa/SVCB``` will attempt to attach a client to an upstream resource's equivalent resolver.  If that equivalent resolver's cert doesn't include the forwarder, the client must reject the answer.  Is it not therefore the case that the forwarder caching behaviour is irrelevant?  All valid responses to this query must be equivalent to the forwarder itself.\r\n- When ```_dns.resolver.arpa/SVCB``` is present in a resolver configuration\r\n  I would suggest some clarification wording something like this: The expectation is that this record set will detail equivalent resolvers.  A client that chooses not to interact with any of these equivalent resolvers SHOULD continue to use the unencrypted resolver, honouring the SVCB TTL.  When the SVCB TTL expires, the client may choose to re-query in an attempt to discover newly available equivalents.\r\n\r\nI would suggest (prefer?) changing the SUDN behaviour so that queries against it are __never__ sent upstream.  Resolvers (and forwarders) that do not have a configured ```_dns.resolver.arpa/SVCB``` RRset should return NODATA.  This would mean that ```resolver.arpa``` SUDN RRsets are always specific to the IP queried.",
       "createdAt": "2021-01-07T18:26:40Z",
-      "updatedAt": "2021-01-07T18:26:40Z",
+      "updatedAt": "2021-01-13T18:39:04Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "It may be good to model the advice after RFC8880, which defines ipv4only.arpa.",
+          "createdAt": "2021-01-12T17:41:17Z",
+          "updatedAt": "2021-01-12T17:41:17Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "@mstojens can you help look at this?",
+          "createdAt": "2021-01-12T17:41:32Z",
+          "updatedAt": "2021-01-12T17:41:32Z"
+        }
+      ]
     },
     {
       "number": 161,
@@ -2686,7 +2769,55 @@
       "labels": [],
       "body": "It would be helpful if there was a paragraph that described what the expected behavior is in certain NAT scenarios.\r\n\r\nSince the IP address must be embedded in the TLS certificate, certain NAT scenarios could present a problem for this approach.\r\n\r\nFor example, if the assigned DNS IP addresses via DHCP are not the actual IP address(es) associated with the DNS service, there could be an issue.  How would such a deployment scenario be addressed? \r\n",
       "createdAt": "2021-01-08T06:03:47Z",
-      "updatedAt": "2021-01-08T06:03:47Z",
+      "updatedAt": "2021-01-14T00:01:48Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "body": "Certainly worth a paragraph or note.\r\n\r\n@vparla can you clarify exactly which NAT scenarios you're considering here? If the client is behind a NAT reaching out to a DNS resolver that is not behind the NAT, the client presumably is reaching out to the \"real\" IP address of the resolver. If the resolver is behind the NAT with the client, then that seems to be a case in which we'd expect it to simply have the same address as the unencrypted resolver?",
+          "createdAt": "2021-01-12T17:44:30Z",
+          "updatedAt": "2021-01-12T17:44:30Z"
+        },
+        {
+          "author": "vparla",
+          "authorAssociation": "NONE",
+          "body": "@tfpauly.\r\nSo if the DHCP assigned DNS address(es) are NAT addresses instead of the actual DNS server addresses, what is the expected outcome?  It was unclear to me if this would work correctly as the client would see the NAT'd address(es) via DHCP and the certificate would hold the actual address(es), not the NAT'd address seen via DHCP.\r\n\r\nSo imagine NAT assigned address is 1.2.3.4 and actual address of DNS server is 4.5.6.7.  What would be the expected outcome here?  DNS from the client would got to 1.2.3.4:53 then be NAT'd to actual DNS server @ 4.5.6.7:53\r\n\r\nNote this is an edge case for the most part, but possible.\r\n",
+          "createdAt": "2021-01-12T18:50:06Z",
+          "updatedAt": "2021-01-12T18:50:06Z"
+        },
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@vparla It sounds like you're describing a classic \"DNS forwarder\".  I don't think this matches typical usage of \"NAT\", which does not modify the server IP as observed by the client.",
+          "createdAt": "2021-01-12T19:24:51Z",
+          "updatedAt": "2021-01-12T19:24:51Z"
+        },
+        {
+          "author": "vparla",
+          "authorAssociation": "NONE",
+          "body": "For the sake of this discussion, a DNS forwarder and a NAT can be viewed as roughly equivalent for this problem.\r\nClient assigned DNS server address is 1.2.3.4 and as such sends DNS to 1.2.3.4:53.  The actual DNS Server is 4.5.6.7 and the IP in the certificate are also 4.5.6.7",
+          "createdAt": "2021-01-13T23:58:54Z",
+          "updatedAt": "2021-01-14T00:01:48Z"
+        }
+      ]
+    },
+    {
+      "number": 162,
+      "id": "MDU6SXNzdWU3ODU1NDY4Nzk=",
+      "title": "Bump ODoH version",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/162",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "odoh",
+        "ready for text"
+      ],
+      "body": "Move from ff03 to ff04 when we publish a version that requires HPKE 07",
+      "createdAt": "2021-01-14T00:08:28Z",
+      "updatedAt": "2021-01-14T00:08:28Z",
       "closedAt": null,
       "comments": []
     }
@@ -11755,26 +11886,42 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NTQxMjA1ODU2",
       "title": "Bump HPKE to -07.",
       "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/pull/158",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "cc @tanyav2 ",
       "createdAt": "2020-12-16T14:30:33Z",
-      "updatedAt": "2020-12-16T14:30:33Z",
+      "updatedAt": "2021-01-14T00:09:44Z",
       "baseRepository": "tfpauly/draft-pauly-adaptive-dns-privacy",
       "baseRefName": "master",
       "baseRefOid": "7d40a22eea5c400d8ce4f1e349cc3bdb5a91a169",
       "headRepository": "tfpauly/draft-pauly-adaptive-dns-privacy",
       "headRefName": "caw/bump-hpke",
       "headRefOid": "b0f10aa884b421a0307768b8f06f6ae4a5efe381",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-01-14T00:09:44Z",
+      "mergedAt": "2021-01-14T00:09:44Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "abf71845f4531c4c64e2a0d4af121370054f33bc"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTY3NzU3OTYy",
+          "commit": {
+            "abbreviatedOid": "b0f10aa"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-01-14T00:09:38Z",
+          "updatedAt": "2021-01-14T00:09:38Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
