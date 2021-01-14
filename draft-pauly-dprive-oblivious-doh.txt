@@ -5,12 +5,12 @@
 Network Working Group                                         E. Kinnear
 Internet-Draft                                                Apple Inc.
 Intended status: Standards Track                              P. McManus
-Expires: 19 June 2021                                             Fastly
+Expires: 18 July 2021                                             Fastly
                                                                 T. Pauly
                                                               Apple Inc.
                                                                C.A. Wood
                                                               Cloudflare
-                                                        16 December 2020
+                                                         14 January 2021
 
 
                         Oblivious DNS Over HTTPS
@@ -39,11 +39,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2021.
+   This Internet-Draft will expire on 18 July 2021.
 
 Copyright Notice
 
-   Copyright (c) 2020 IETF Trust and the persons identified as the
+   Copyright (c) 2021 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 1]
+Kinnear, et al.           Expires 18 July 2021                  [Page 1]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    and restrictions with respect to this document.  Code Components
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 2]
+Kinnear, et al.           Expires 18 July 2021                  [Page 2]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    Proposals such as Oblivious DNS ([I-D.annee-dprive-oblivious-dns])
@@ -165,9 +165,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 3]
+Kinnear, et al.           Expires 18 July 2021                  [Page 3]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    *  Public keys for encrypting DNS queries that are passed from a
@@ -221,9 +221,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 4]
+Kinnear, et al.           Expires 18 July 2021                  [Page 4]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    Clients MUST set the HTTP Content-Type header to "application/
@@ -277,9 +277,9 @@ content-length = 106
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 5]
+Kinnear, et al.           Expires 18 July 2021                  [Page 5]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
 4.3.  HTTP Response
@@ -333,9 +333,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 6]
+Kinnear, et al.           Expires 18 July 2021                  [Page 6]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
 5.  Configuration and Public Key Discovery
@@ -389,9 +389,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 7]
+Kinnear, et al.           Expires 18 July 2021                  [Page 7]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
       used.  Clients MUST ignore any "ObliviousDoHConfig" structure with
@@ -445,9 +445,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 8]
+Kinnear, et al.           Expires 18 July 2021                  [Page 8]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    struct {
@@ -501,9 +501,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                  [Page 9]
+Kinnear, et al.           Expires 18 July 2021                  [Page 9]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    def encrypt_query_body(pkR, key_id, Q_plain):
@@ -557,9 +557,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 10]
+Kinnear, et al.           Expires 18 July 2021                 [Page 10]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    def encrypt_response_body(R_plain, answer_key, answer_nonce):
@@ -613,9 +613,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 11]
+Kinnear, et al.           Expires 18 July 2021                 [Page 11]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    3.  Compute "Q_plain, error = decrypt_query_body(context, Q.key_id,
@@ -669,9 +669,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 12]
+Kinnear, et al.           Expires 18 July 2021                 [Page 12]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    Oblivious DoH aims to keep knowledge of the true query origin and its
@@ -725,9 +725,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 13]
+Kinnear, et al.           Expires 18 July 2021                 [Page 13]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
 11.1.  Denial of Service
@@ -781,9 +781,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 14]
+Kinnear, et al.           Expires 18 July 2021                 [Page 14]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    Subtype name: oblivious-dns-message
@@ -837,9 +837,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 15]
+Kinnear, et al.           Expires 18 July 2021                 [Page 15]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
    SvcParamKey:  32769
@@ -875,9 +875,9 @@ Internet-Draft                Oblivious DoH                December 2020
    [I-D.irtf-cfrg-hpke]
               Barnes, R., Bhargavan, K., Lipp, B., and C. Wood, "Hybrid
               Public Key Encryption", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-hpke-06, 23 October 2020,
+              draft-irtf-cfrg-hpke-07, 16 December 2020,
               <http://www.ietf.org/internet-drafts/draft-irtf-cfrg-hpke-
-              06.txt>.
+              07.txt>.
 
    [I-D.pauly-add-resolver-discovery]
               Pauly, T., Kinnear, E., Wood, C., McManus, P., and T.
@@ -893,9 +893,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 16]
+Kinnear, et al.           Expires 18 July 2021                 [Page 16]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
               dns-privacy-01, 1 November 2019, <http://www.ietf.org/
@@ -949,9 +949,9 @@ Internet-Draft                Oblivious DoH                December 2020
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 17]
+Kinnear, et al.           Expires 18 July 2021                 [Page 17]
 
-Internet-Draft                Oblivious DoH                December 2020
+Internet-Draft                Oblivious DoH                 January 2021
 
 
 Authors' Addresses
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Kinnear, et al.           Expires 19 June 2021                 [Page 18]
+Kinnear, et al.           Expires 18 July 2021                 [Page 18]

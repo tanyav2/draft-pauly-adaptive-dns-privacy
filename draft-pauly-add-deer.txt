@@ -5,13 +5,13 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Standards Track                              Apple Inc.
-Expires: 19 June 2021                                          C.A. Wood
+Expires: 18 July 2021                                          C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                        16 December 2020
+                                                         14 January 2021
 
 
               Discovery of Equivalent Encrypted Resolvers
@@ -44,18 +44,18 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2021.
+   This Internet-Draft will expire on 18 July 2021.
 
 Copyright Notice
 
-   Copyright (c) 2020 IETF Trust and the persons identified as the
+   Copyright (c) 2021 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 1]
+Pauly, et al.             Expires 18 July 2021                  [Page 1]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 2]
+Pauly, et al.             Expires 18 July 2021                  [Page 2]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    1.  When only an IP address of an Unencrypted Resolver is known, the
@@ -165,9 +165,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 3]
+Pauly, et al.             Expires 18 July 2021                  [Page 3]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    When a client discovers Equivalent Encrypted Resolvers, it learns
@@ -221,9 +221,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 4]
+Pauly, et al.             Expires 18 July 2021                  [Page 4]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
 4.1.  Authenticated Discovery
@@ -277,9 +277,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 5]
+Pauly, et al.             Expires 18 July 2021                  [Page 5]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
 5.  Discovery Using Resolver Names
@@ -333,9 +333,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 6]
+Pauly, et al.             Expires 18 July 2021                  [Page 6]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
 6.1.  Caching Forwarders
@@ -389,9 +389,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 7]
+Pauly, et al.             Expires 18 July 2021                  [Page 7]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    If the IP address of an Equivalent Encrypted Resolver differs from
@@ -431,9 +431,9 @@ Internet-Draft                    DEER                     December 2020
    [I-D.ietf-tls-esni]
               Rescorla, E., Oku, K., Sullivan, N., and C. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
-              draft-ietf-tls-esni-08, 16 October 2020,
+              draft-ietf-tls-esni-09, 16 December 2020,
               <http://www.ietf.org/internet-drafts/draft-ietf-tls-esni-
-              08.txt>.
+              09.txt>.
 
    [I-D.schwartz-svcb-dns]
               Schwartz, B., "Service Binding Mapping for DNS Servers",
@@ -445,9 +445,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 8]
+Pauly, et al.             Expires 18 July 2021                  [Page 8]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    [RFC1918]  Rekhter, Y., Moskowitz, B., Karrenberg, D., de Groot, G.
@@ -501,9 +501,9 @@ Internet-Draft                    DEER                     December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 9]
+Pauly, et al.             Expires 18 July 2021                  [Page 9]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
@@ -557,9 +557,9 @@ Appendix A.  Rationale for using SVCB records
 
 
 
-Pauly, et al.             Expires 19 June 2021                 [Page 10]
+Pauly, et al.             Expires 18 July 2021                 [Page 10]
 
-Internet-Draft                    DEER                     December 2020
+Internet-Draft                    DEER                      January 2021
 
 
 Authors' Addresses
@@ -613,4 +613,4 @@ Authors' Addresses
 
 
 
-Pauly, et al.             Expires 19 June 2021                 [Page 11]
+Pauly, et al.             Expires 18 July 2021                 [Page 11]

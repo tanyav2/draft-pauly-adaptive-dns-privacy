@@ -5,13 +5,13 @@
 Network Working Group                                           T. Pauly
 Internet-Draft                                                E. Kinnear
 Intended status: Informational                                Apple Inc.
-Expires: 19 June 2021                                          C.A. Wood
+Expires: 18 July 2021                                          C.A. Wood
                                                               Cloudflare
                                                               P. McManus
                                                                   Fastly
                                                                T. Jensen
                                                                Microsoft
-                                                        16 December 2020
+                                                         14 January 2021
 
 
                   Adaptive DNS Discovery Requirements
@@ -40,11 +40,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2021.
+   This Internet-Draft will expire on 18 July 2021.
 
 Copyright Notice
 
-   Copyright (c) 2020 IETF Trust and the persons identified as the
+   Copyright (c) 2021 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 1]
+Pauly, et al.             Expires 18 July 2021                  [Page 1]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    Please review these documents carefully, as they describe your rights
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 2]
+Pauly, et al.             Expires 18 July 2021                  [Page 2]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
 1.1.  Specification of Requirements
@@ -165,9 +165,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 3]
+Pauly, et al.             Expires 18 July 2021                  [Page 3]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    Discovering if the selected resolver supports encryption, along with
@@ -221,9 +221,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 4]
+Pauly, et al.             Expires 18 July 2021                  [Page 4]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    Using encrypted DNS for private names also opens up the possibility
@@ -277,9 +277,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 5]
+Pauly, et al.             Expires 18 July 2021                  [Page 5]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    *  Reduce the number of entities able to monitor the specific names
@@ -333,9 +333,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 6]
+Pauly, et al.             Expires 18 July 2021                  [Page 6]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    *  Modify unencrypted DNS traffic to filter or augment the user
@@ -389,9 +389,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 7]
+Pauly, et al.             Expires 18 July 2021                  [Page 7]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
 4.2.  Handling exceptions and failures
@@ -445,9 +445,9 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 8]
+Pauly, et al.             Expires 18 July 2021                  [Page 8]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    [RFC7296]  Kaufman, C., Hoffman, P., Nir, Y., Eronen, P., and T.
@@ -501,9 +501,9 @@ Authors' Addresses
 
 
 
-Pauly, et al.             Expires 19 June 2021                  [Page 9]
+Pauly, et al.             Expires 18 July 2021                  [Page 9]
 
-Internet-Draft              ADD Requirements               December 2020
+Internet-Draft              ADD Requirements                January 2021
 
 
    Christopher A. Wood
@@ -557,4 +557,4 @@ Internet-Draft              ADD Requirements               December 2020
 
 
 
-Pauly, et al.             Expires 19 June 2021                 [Page 10]
+Pauly, et al.             Expires 18 July 2021                 [Page 10]
