@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-01-14T01:07:23.054588+00:00",
+  "timestamp": "2021-01-17T00:59:38.014784+00:00",
   "repo": "tfpauly/draft-pauly-adaptive-dns-privacy",
   "labels": [
     {
@@ -2769,7 +2769,7 @@
       "labels": [],
       "body": "It would be helpful if there was a paragraph that described what the expected behavior is in certain NAT scenarios.\r\n\r\nSince the IP address must be embedded in the TLS certificate, certain NAT scenarios could present a problem for this approach.\r\n\r\nFor example, if the assigned DNS IP addresses via DHCP are not the actual IP address(es) associated with the DNS service, there could be an issue.  How would such a deployment scenario be addressed? \r\n",
       "createdAt": "2021-01-08T06:03:47Z",
-      "updatedAt": "2021-01-14T00:01:48Z",
+      "updatedAt": "2021-01-14T15:48:57Z",
       "closedAt": null,
       "comments": [
         {
@@ -2799,6 +2799,20 @@
           "body": "For the sake of this discussion, a DNS forwarder and a NAT can be viewed as roughly equivalent for this problem.\r\nClient assigned DNS server address is 1.2.3.4 and as such sends DNS to 1.2.3.4:53.  The actual DNS Server is 4.5.6.7 and the IP in the certificate are also 4.5.6.7",
           "createdAt": "2021-01-13T23:58:54Z",
           "updatedAt": "2021-01-14T00:01:48Z"
+        },
+        {
+          "author": "bemasc",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This situation would not occur when using \"NAT\" according to the definition that I'm used to, but it is an important scenario to consider.\r\n\r\nThe current draft essentially rules this \"out of scope\".  As you observed, the upgrade will not occur in this configuration.\r\n\r\nI have posted a (rather invasive) PR that would put this in-scope, with various safeguards to prevent unauthorized redirection: #147.",
+          "createdAt": "2021-01-14T15:00:50Z",
+          "updatedAt": "2021-01-14T15:00:50Z"
+        },
+        {
+          "author": "vparla",
+          "authorAssociation": "NONE",
+          "body": "I am happy with it just being clearly articulated in terms of the scenario and the outcome.  \r\nthanks for looking at it.",
+          "createdAt": "2021-01-14T15:48:57Z",
+          "updatedAt": "2021-01-14T15:48:57Z"
         }
       ]
     },
@@ -2818,6 +2832,22 @@
       "body": "Move from ff03 to ff04 when we publish a version that requires HPKE 07",
       "createdAt": "2021-01-14T00:08:28Z",
       "updatedAt": "2021-01-14T00:08:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 163,
+      "id": "MDU6SXNzdWU3ODY5OTc4Mjg=",
+      "title": "Clarification on Opportunistic with respect to dns://resolver.arpa",
+      "url": "https://github.com/tfpauly/draft-pauly-adaptive-dns-privacy/issues/163",
+      "state": "OPEN",
+      "author": "magicalo",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Can you clarify why dns://resolver.arpa would matter in an Opportunistic scenario, or at least in a subset of Opportunistic options.\r\n\r\nCouldn't a DNS client simply attempt DoH on the same IP address(es) as Do53 (ideally in parallel)\r\n and if the certificate returned during the DoH exchanges meets the criteria (matching IPs listed in the SAN, cert validation, etc.) then it would simply attempt the upgrade, never having to consider/engage dns://resolver.arpa\r\n\r\nMaybe I have misunderstood this section or the role dns://resolver.arpa would play here. Could you clarify please.",
+      "createdAt": "2021-01-15T15:52:08Z",
+      "updatedAt": "2021-01-15T15:52:08Z",
       "closedAt": null,
       "comments": []
     }
